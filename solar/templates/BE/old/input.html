@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Input A Page</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="input.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+  <script src="floatval.js"></script>		
+	<script type ="text/javascript">
+ function isNumberKey1(evt) {
+	var charCode = (evt.which) ? evt.which : event.keyCode;
+	if (charCode == 46){
+        	var inputValue = $("#floor1").val();
+       		var count = (inputValue.match(/'.'/g) || []).length;
+        	if(count<1){
+            		if (inputValue.indexOf('.') < 1){
+                		return true;
+            		}
+            		return false;
+        	}else{
+            		return false;
+        		}
+    	}
+        if (charCode != 46 && charCode > 31 && (charCode < 48 || charCode > 57))
+             	return false;
+
+          return true;
+}
+
+ function isNumberKey2(evt) {
+	var charCode = (evt.which) ? evt.which : event.keyCode;
+	if (charCode == 46){
+        	var inputValue = $("#floor2").val();
+       		var count = (inputValue.match(/'.'/g) || []).length;
+        	if(count<1){
+            		if (inputValue.indexOf('.') < 1){
+                		return true;
+            		}
+            		return false;
+        	}else{
+            		return false;
+        		}
+    	}
+        if (charCode != 46 && charCode > 31 && (charCode < 48 || charCode > 57))
+             	return false;
+
+          return true;
+}
+</script>
+ <script>
+        function checkFile() {
+    var formData = new FormData();
+ 
+    var file = document.getElementById("img").files[0];
+ 
+    formData.append("Filedata", file);
+    var t = file.type.split('/').pop().toLowerCase();
+    if (t != "jpeg" && t != "jpg" && t != "png" && t != "JPG" && t != "JPEG" && t != "PNG") {
+        alert('Please select a valid image file');
+        document.getElementById("img").value = '';
+        return false;
+    }
+    return true;
+}
+
+	function chFile() {
+    var formData = new FormData();
+    var file = document.getElementById("pyfile").files[0];
+ 
+   // formData.append("Filedata", file);
+    var t = file.split('.').pop();
+    //alert();
+    if (t != "py" ) {
+        alert('Please select a valid file');
+        document.getElementById("pyfile").value = '';
+        return false;
+    }
+    return true;
+}
+   </script>
+
+</head>
+<body>
+							<!--Navigation bar Start-->
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid" >
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">WebSiteName</a>
+    </div>
+   
+    <ul class="nav navbar-nav navbar-right">
+      <li class="active"><a href="logged_in.html">Home</a></li>
+      <li><a href="#">About Us</a></li>
+      <li><a href="#">Contact</a></li>
+      <li><a href="input_b.html">Input B</a></li>
+      <li><a href="{% url 'logout' %}">Logout</a></li>
+    </ul>
+  </div>
+</nav>
+							<!--Navigation bar End-->
+
+<div class="input">
+	<form name="input_form" method="get" enctype="multipart/form-data" action="{% url 'parta'%}">
+		Latitude : <input type="text" name="lat" placeholder="latitude" onkeypress="return isNumberKey1(event)" id="floor1" required/>
+		&emsp;&emsp;Longitude : <input type="text" name="long" placeholder="longitude" onkeypress="return isNumberKey2(event)" id="floor2" required/></br></br>
+		Upload images:<input type="file" name="img" id ="img" multiple onchange="checkFile()" accept="image/*" required></br>
+		Upload files:<input type="file" name="file" id ="pyfile" multiple onchange="chFile()" accept=".py" required></br>
+		<button type="submit" name ="Submit" value="Submit" style="margin-left:220px;">Submit</button>
+		
+		
+	</form>
+</div>
+							
+<div class="footercontainer">
+	<div class="footer">
+		<table>
+		<tr>		
+		<td>Telephone</td>
+		<td>Address</td>
+		<td>Email</td>
+		</tr>
+		<tr></tr>
+		</table>
+	</div>
+</div>
+							
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script type="text/javascript" src="http://arrow.scrolltotop.com/arrow86.js"></script>
+<noscript>Not seeing a <a href="http://www.scrolltotop.com/">Scroll to Top Button</a></noscript>
+
+<div class="Copyright">
+	<p style="text-align:center;margin-top:5px;padding-top:5px;font-size:11px;line-height:21px;">.&copy; 2018 .Designed by . Powered by<p>
+</div> 
+			
+</body>
+</html>
+
